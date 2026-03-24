@@ -23,14 +23,21 @@ class Window(QWidget):
         self.imgTortuga.resize(100, 100)
         self.imgTortuga.move(10, 150)
 
+        #Imagen meta
+        self.imgMeta = QLabel(self)
+        self.imgMeta.setPixmap(QPixmap("./img/meta.png"))
+        self.imgMeta.setScaledContents(True)
+        self.imgMeta.resize(100,100)
+        self.imgMeta.move(10,300)
+
         #Botón iniciar
         self.btnIniciar = QPushButton("Iniciar", self)
         self.btnIniciar.move(350, 300)
         self.btnIniciar.clicked.connect(self.iniciar)
 
         #Crear subprocesos
-        self.pLiebre = SubProceso(self.imgLiebre, 500)
-        self.pTortuga = SubProceso(self.imgTortuga, 5000)
+        self.pLiebre = SubProceso(self.imgLiebre, 5, "Liebre")
+        self.pTortuga = SubProceso(self.imgTortuga, 50, "Tortuga")
 
         #Conectar señales
         self.pLiebre.actualizar.connect(self.moverLiebre)
